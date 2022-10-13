@@ -14,7 +14,23 @@ variable "instance_type" {
   type = string
   default = "t2.small"
 }
+variable "ec2_keypair" {
+  type = string
+  default = "Project-1-keypayr"
+}
 variable "db_instance_class" {
   type = string
   default = "db.t3.micro"
+}
+variable "db_name" {
+  type = string
+  default = "Ice Cream"
+}
+variable "db_username" {
+  type = string
+  sensitive = true
+}
+variable "db_password" {
+  type = string
+  sensitive = true
 }

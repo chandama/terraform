@@ -11,9 +11,9 @@ resource "aws_db_instance" "rds_instance" {
     engine                  = "mysql"
     engine_version          = "5.7"
     identifier              = "rds-terraform"
-    db_name                 = "IceCream"
-    username                = "admin"
-    password                = "ProfKettlesLovesDonuts123"
+    db_name                 = var.db_name
+    username                = var.db_username
+    password                = var.db_password
     skip_final_snapshot     = true
     db_subnet_group_name    = aws_db_subnet_group.rds_subnet_group.name
     publicly_accessible     = true

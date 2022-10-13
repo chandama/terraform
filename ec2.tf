@@ -12,7 +12,7 @@ resource "aws_instance" "project1_ec2_webserver" {
     vpc_security_group_ids  = [aws_security_group.ec2_sg.id]
     iam_instance_profile    = aws_iam_instance_profile.ec2_profile.name
     associate_public_ip_address = true
-    key_name                = "Project-1-keypayr"
+    key_name                = var.ec2_keypair
     user_data = <<-EOF
       #!/bin/bash
       echo "Update dependencies and install CodeDeploy Agent"
