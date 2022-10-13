@@ -26,7 +26,15 @@ Terraform code which creates the following resources:
 17. CodePipeline
 
 
-To run
+# To run
+Create a `secrets.tfvars` file which contains the following (these will be the default credentials to log into MySQL:
 ```
+db_username = "user"
+db_password = "password"
+```
+With the `secrets.tfvars` file created run the following commands:
+```
+terraform init
+terraform plan
 terraform apply -var-file="secrets.tfvars"
 ```
