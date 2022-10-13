@@ -1,7 +1,7 @@
 # terraform
 Terraform code which creates the following resources:
 1. VPC
-2. Subnets (1 Private and 2 Public)
+2. Subnets
     * Private
     * Public x2
 4. Route Tables
@@ -36,7 +36,7 @@ You will also need to have an AWS account with a user configured with an `AWS_AC
 https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys
 
 # To run
-Create a `secrets.tfvars` file which contains the following credentials::
+Create a `secrets.tfvars` file in the same directory as your `.tf` files which contains the following credentials::
 ```
 db_username = "user"
 db_password = "password"
