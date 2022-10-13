@@ -38,3 +38,6 @@ terraform init
 terraform plan
 terraform apply -var-file="secrets.tfvars"
 ```
+
+# After Successful Deployment
+After a successful deployment any file added to the CodeCommit repository will be automatically pushed out to the EC2 instance according to the instructions in the `appspec.yml` configuration file
