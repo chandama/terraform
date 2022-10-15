@@ -4,8 +4,6 @@
 *
 */
 
-
-
 # VPC Resource
 resource "aws_vpc" "project1_vpc" {
   cidr_block                = "10.0.0.0/18"
@@ -41,7 +39,7 @@ resource "aws_subnet" "private" {
   }
 }
 
-# 2nd Private Subnet Resource for DB instance
+# 2nd Private Subnet Resource for DB instance (Aurora requires subnets in 2 AZs)
 resource "aws_subnet" "private2" {
   vpc_id                    = aws_vpc.project1_vpc.id
   cidr_block                = "10.0.2.0/24"
@@ -130,12 +128,12 @@ resource "aws_security_group" "ec2_sg" {
     from_port               = 22
     to_port                 = 22
     protocol                = "tcp"
-    cidr_blocks             = ["10.0.0.0/18", "128.187.116.26/32", "0.0.0.0/0"]
+    cidr_blocks             = ["10.0.0.0/18", "0.0.0.0/0"]
   }
   
   ingress {
-    from_port               = 80
-    to_port                 = 80
+    from_port               = 8000
+    to_port                 = 8000
     protocol                = "tcp"
     cidr_blocks             = ["0.0.0.0/0"]
   }
