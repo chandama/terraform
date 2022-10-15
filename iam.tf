@@ -6,7 +6,7 @@
 
 # IAM Assume Role for EC2
 resource "aws_iam_role" "ec2_instance_role" {
-  name                      = "EC2InstanceRole"
+  name                      = "EC2InstanceRole-${random_id.id.hex}"
   description               = "IAM Role for access EC2"
   assume_role_policy = <<EOF
   {
@@ -31,7 +31,7 @@ resource "aws_iam_role" "ec2_instance_role" {
 
 # EC2 Instance Profile to be referenced by aws_instance resource
 resource "aws_iam_instance_profile" "ec2_profile" {
-  name                      = "ec2_profile"
+  name                      = "ec2_profile_${random_id.id.hex}"
   role                      = aws_iam_role.ec2_instance_role.name
 }
 
@@ -56,7 +56,7 @@ resource "aws_iam_role_policy_attachment" "role_policy_attachment" {
 # IAM role for CodeDeploy
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/codedeploy_deployment_group
 resource "aws_iam_role" "code_deploy_role" {
-  name = "CodeDeployRole"
+  name = "CodeDeployRole-${random_id.id.hex}"
 
   assume_role_policy = <<EOF
 {
@@ -84,7 +84,7 @@ resource "aws_iam_role_policy_attachment" "AWSCodeDeployRole" {
 
 
 resource "aws_iam_policy" "EC2CodeDeploy" {
-  name                      = "EC2CodeDeployPolicy"
+  name                      = "EC2CodeDeployPolicy-${random_id.id.hex}"
   description               = "Code Deploy Policy for AWS"
   policy = jsonencode({
       "Statement": [
@@ -114,7 +114,7 @@ resource "aws_iam_policy_attachment" "ec2" {
 
 
 resource "aws_iam_role" "codepipeline_role" {
-  name = "test-role"
+  name = "test-role-${random_id.id.hex}"
 
   assume_role_policy = <<EOF
 {
@@ -133,7 +133,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "codepipeline_policy" {
-  name = "codepipeline_policy"
+  name = "codepipeline_policy-${random_id.id.hex}"
   role = aws_iam_role.codepipeline_role.id
 
   policy = <<EOF
